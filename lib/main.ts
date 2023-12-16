@@ -1,4 +1,6 @@
-import { parse } from "./parser";
+import { parse as parseCode } from "./parser";
+
+export const parse = parseCode;
 
 type ExcludePredicates<Segment extends string> =
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -28,7 +30,7 @@ export class ResourceTree<TDef> {
   constructor(public def: TDef) {}
 
   query<TPath extends string>(path: TPath): Resolve<TDef, TPath> {
-    const segments = parse(path);
+    const segments = parseCode(path);
 
     return segments.reduce((def, segment) => {
       const fn = def[segment.name];

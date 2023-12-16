@@ -56,7 +56,7 @@ const predicateCall = C.char("(")
   .then(C.char(")").drop())
   .single()
   .map((value) => value as Param[]);
-const predicateName = C.charNotIn("(")
+const predicateName = C.charNotIn("(./")
   .rep()
   .map((value) => value.join());
 const predicateBody = predicateName
